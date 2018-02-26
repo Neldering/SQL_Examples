@@ -1,0 +1,298 @@
+
+Create Tables
+
+CREATE TABLE `prescription` (
+ `Prescription_ID` int(11) NOT NULL AUTO_INCREMENT,
+ `Doctor_ID` int(11) NOT NULL,
+ `Customer_ID` int(11) NOT NULL,
+ `Med_ID` int(11) NOT NULL,
+ `Date_Writen` datetime DEFAULT CURRENT_TIMESTAMP,
+ `Refill_Amount` int(11) NOT NULL DEFAULT '1',
+ PRIMARY KEY (`Prescription_ID`),
+ KEY `Doctor_ID` (`Doctor_ID`),
+ KEY `Customer_ID` (`Customer_ID`),
+ KEY `Med_ID` (`Med_ID`),
+ CONSTRAINT `Prescription_ibfk_1` FOREIGN KEY (`Customer_ID`) REFERENCES `customer` (`Customer_ID`),
+ CONSTRAINT `Prescription_ibfk_2` FOREIGN KEY (`Med_ID`) REFERENCES `med` (`Med_ID`),
+ CONSTRAINT `Prescription_ibfk_3` FOREIGN KEY (`Doctor_ID`) REFERENCES `doctor` (`Doctor_ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1
+
+
+create table doctor (
+    Doctor_ID int not null AUTO_INCREMENT,
+    Doctor_Name varchar(255) not null,
+    Doctor_ZIP int,
+    PRIMARY KEY (Doctor_ID))
+    
+    
+    
+    CREATE TABLE `customer` (
+ `Customer_ID` int(11) NOT NULL AUTO_INCREMENT,
+ `Customer_Name` varchar(255) NOT NULL,
+ `Doctor_ID` int(11) NOT NULL,
+ `Cust_Address` varchar(255) NOT NULL,
+ PRIMARY KEY (Customer_ID),
+ CONSTRAINT `fks_customers`
+ FOREIGN KEY (Doctor_ID) REFERENCES doctor(Doctor_ID)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1
+
+CREATE TABLE `med` (
+ `Med_ID` int(11) NOT NULL AUTO_INCREMENT,
+ `Med_Name` varchar(50) NOT NULL,
+ Inventory int(11),
+ PRIMARY KEY (`Med_ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1
+
+
+
+create table employee (
+    Employee_ID int not null AUTO_INCREMENT,
+    Employee_Name varchar(55) not null,
+    Employee_Title varchar(55),
+    PRIMARY KEY (Employee_ID))
+    
+    
+    CREATE TABLE `restock_Order` (
+ `Restock_Order_ID` int(11) NOT NULL AUTO_INCREMENT,
+ `Employee_ID` int(11) NOT NULL,
+ `Med_ID` int(11) NOT NULL,
+ `Date_Ordered` datetime DEFAULT CURRENT_TIMESTAMP,
+ `Order_Amount` int(11) NOT NULL DEFAULT '1',
+ PRIMARY KEY (`Restock_Order_ID`),
+ KEY `Employee_ID` (`Employee_ID`),
+ KEY `Med_ID` (`Med_ID`),
+ CONSTRAINT `Restock_ibfk_1` FOREIGN KEY (`Employee_ID`) REFERENCES `employee` (`Employee_ID`),
+ CONSTRAINT `Restock_ibfk_2` FOREIGN KEY (`Med_ID`) REFERENCES `med` (`Med_ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1
+
+
+
+CREATE TABLE `customer_Order` (
+ `Customer_Order_ID` int(11) NOT NULL AUTO_INCREMENT,
+ `Employee_ID` int(11) NOT NULL,
+ `Prescription_ID` int(11) NOT NULL,
+ `Date_Ordered` datetime DEFAULT CURRENT_TIMESTAMP,
+ `Order_Amount` int(11) NOT NULL DEFAULT '1',
+ PRIMARY KEY (`Customer_Order_ID`),
+ KEY `Employee_ID` (`Employee_ID`),
+ KEY `Prescription_ID` (`Prescription_ID`),
+ CONSTRAINT `CustOrder_ibfk_1` FOREIGN KEY (`Employee_ID`) REFERENCES `employee` (`Employee_ID`),
+ CONSTRAINT `CustOrder_ibfk_2` FOREIGN KEY (`Prescription_ID`) REFERENCES `prescription` (`Prescription_ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1
+
+
+LOGIN TABLES
+
+CREATE TABLE `login` (
+ `username` varchar(200) NOT NULL,
+ `password` varchar(200) NOT NULL,
+ PRIMARY KEY (`username`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1
+
+CREATE TABLE `UserName` (
+ `UserNameID` int(9) NOT NULL AUTO_INCREMENT,
+ `userName` varchar(40) NOT NULL,
+ `pass` varchar(40) NOT NULL,
+ PRIMARY KEY (`UserNameID`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1
+
+
+CREATE TABLE `users` (
+ `id` int(11) NOT NULL AUTO_INCREMENT,
+ `username` varchar(50) NOT NULL,
+ `password` varchar(255) NOT NULL,
+ `created_at` datetime DEFAULT CURRENT_TIMESTAMP,
+ PRIMARY KEY (`id`),
+ UNIQUE KEY `username` (`username`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1
+
+//
+
+
+INSERTS
+
+insert into med
+(Med_Name, Inventory)
+Values
+("Astrovastatin", 14),
+("Levothyroxine", 1),
+("Lisinopril", 2),
+("Prinivil", 3),
+("Metformin", 4),
+("Amlodipine", 5),
+("Simvastatin", 6),
+("Zocor", 7),
+("Metoprolol", 8),
+("Cozaar", 9),
+("Losartan", 10),
+("Amoxicillin", 11),
+("Fluticasone", 12),
+("Tramadol", 13),
+("Carvedilol", 15),
+("Warfarin", 16),
+("Coumadin", 17),
+("Ventolin", 18),
+("Trazodone", 19),
+("Klor-Con", 20)
+
+
+Doctor insert
+INSERT INTO doctor
+(Doctor_Name, Doctor_ZIP  )
+VALUES
+("Dr. Albert", 12345),
+("Dr. Bruel", 42312),
+("Dr. Phill", 21321),
+("Dr. Doolittle", 58493),
+("Dr. Doom", 53423),
+("Dr. Faustus", 94949),
+("Dr. Light", 31233),
+("Dr. Mid-nite", 32321),
+("Dr. Fate", 58488),
+("Dr. Manhattan", 32132),
+("Dr. Octopus", 32112),
+("Dr. Jekyll", 12341),
+("Dr. Lecter", 12345),
+("Dr. Watson", 54124),
+("Dr. Strangelove", 12312),
+("Dr Pyckle", 44444),
+("Dr. Syn", 55555),
+("Dr. Who", 62323),
+("Dr. Kane", 99788),
+("Dr. Sleep", 78978)
+
+INSERT INTO employee
+(Employee_Name, Employee_Title  )
+VALUES
+("Steve", "Clerk"),
+("Nick", "Manager"),
+("Phill", "Clerk"),
+("Kevin", "Clerk"),
+("Drew", "Manager"),
+("Anna", "Manager"),
+("Mary", "Manager"),
+("Mike", "Clerk"),
+("Francis", "Clerk"),
+("Albert", "Clerk"),
+("Bob", "Manager"),
+("Sarah", "Manager"),
+("Stephan", "Clerk"),
+("Joseph", "Clerk"),
+("Tom", "Clerk"),
+("Kyle", "Clerk"),
+("Kara", "Manager"),
+("Tara", "Clerk"),
+("Beth", "Clerk"),
+("Liz", "Clerk")
+
+
+ 
+ insert into prescription (Doctor_ID, Customer_ID, Med_ID, Refill_Amount)
+ Values
+ (1,6,3,1),
+ (2,7,5,4), 
+ (3,8,3,3),
+ (4,9,4,10),
+ (5,10,5,12),
+ (6,11,4,20),
+ (7,12,13,11),
+ (8,13,12,12),
+ (9,14,17,3),
+ (10,15,10,2),
+ (11,14,9,5),
+ (12,13,12,2),
+ (13,12,13,1),
+ (14,10,5,7),
+ (15,11,7,2),
+ (16,6,9,4),
+ (17,12,11,3),
+ (18,19,13,9),
+ (19,7,12,48),
+ (20,9,7,3)
+
+
+insert into customer
+(Customer_Name, Cust_Address, Doctor_ID  )
+VALUES
+("Steve", "123 Street", 1),
+("Nick", "321 Road" , 2),
+("Phill", "312 Lane", 3),
+("Kevin", "402 Drive", 4),
+("Drew", "32 Lane", 5),
+("Anna", "123 Mockingbird", 5),
+("Mary", "123 Street rd", 6),
+("Mike", "123 Home", 1),
+("Francis", "5233 Main st", 2),
+("Albert", "123 Apt street", 8),
+("Bob", "PO box 12312", 10),
+("Sarah", "california street", 11),
+("Stephan", "123 Streeting", 12),
+("Joseph", "422 Address", 13),
+("Tom", "393 Address", 14),
+("Kyle", "123 Home", 15),
+("Kara", "321 Apt", 16),
+("Tara", "30 2nd", 17),
+("Beth", "32 3rd street",18),
+("Liz", "Main Street", 19)
+
+
+insert into restock_Order ( Employee_ID, Med_ID, Order_Amount)
+Values
+(12,13,12),
+(6,8,9),
+(7,12,13),
+(7,5,4),
+(11,12,12),
+(9,11,13),
+(7,8,6),
+(8,7,6),
+(7,6,5),
+(5,6,7),
+(5,5,5),
+(8,8,8),
+(6,6,6),
+(7,7,7),
+(0,9,13),
+(11,13,14),
+(8,10,10),
+(5,4,1),
+(10,10,10),
+(12,11,9)
+INE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1
+
+insert into customer_Order (Employee_ID, Prescription_ID, OrderAmount)
+Values
+(12,13,12),
+(6,8,9),
+(7,12,13),
+(7,5,4),
+(11,12,12),
+(9,11,13),
+(7,8,6),
+(8,7,6),
+(7,6,5),
+(5,6,7),
+(5,5,5),
+(8,8,8),
+(6,6,6),
+(7,7,7),
+(0,9,13),
+(11,13,14),
+(8,10,10),
+(5,4,1),
+(10,10,10),
+(12,11,9)
+
+
+
+CREATE INDEX docWrote
+ON prescription (Doctor_ID);
+
+Create Index custPrescriptions
+on prescription (Customer_ID);
+
+create index patientOf
+on customer (Doctor_ID);
+
+
+  

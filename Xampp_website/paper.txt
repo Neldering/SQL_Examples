@@ -1,0 +1,41 @@
+The database is in 3nf because it has no transitive keys and it has no composite keys so it does not have any partial dependencies.
+
+
+The indexes 
+prescriptions on doctor_ID so doctors can see all prescriptions they have written.
+Prescriptions on customer_ID so customers can see all their prescriptions in the system.
+Customers on doctor_ID so doctors can see all their patients.
+
+
+CREATE INDEX docWrote
+ON prescription (Doctor_ID);
+
+Create Index custPrescriptions
+on prescription (Customer_ID);
+
+create index patientOf
+on customer (Doctor_ID);
+
+
+
+
+Constraints
+There is a constraint on prescriptions so when a customer is dropped from the system all their prescriptions are dropped from the system (we still send out their last order if they have one).
+This required a transaction to ensure integrity.
+
+
+        $this->db->beginTransaction();
+        $statement = $this->db->prepare('DELETE FROM `customer` WHERE Customer_ID = :custID');
+        $statement->bindParam(':custID', $custID);
+        $statement->execute();
+        $state = $this->db->prepare('DELETE FROM `prescription` WHERE Customer_ID = :custID');
+        $state->bindParam(':custID', $custID);
+        $state->execute();
+        $this->db->commit();
+
+
+Database integrity
+Integrity is maintained via foreign key constraints:
+You can’t write a prescription without a valid customer_ID, med_ID, doctor_ID
+You can’t register a customer without a valid doctor.
+When you delete a customer we also delete all their prescriptions in our system (via a transaction).

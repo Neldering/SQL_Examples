@@ -1,0 +1,187 @@
+#header {
+    background-color: #30302f;
+    height: 150px;
+    padding: 20px;
+    color: #FFFFFF;
+    text-align: center;
+    border-bottom: #5e5e5d solid 2px;
+}
+
+#header h1 {
+    width: 100%;
+}
+
+#body {
+    padding: 0;
+}
+
+#header h4 {
+	color: black
+}
+
+.row {
+    padding: 0;
+    margin: 0;
+}
+
+
+
+#sidebar {
+    background: #799ca1;
+    padding: 30px;
+    color: #FFFFFF;
+    min-height: 100vh;
+    height: 100%;
+    border-right: #5e5e5d solid 2px;
+}
+
+#content {
+    background: #FFFFFF;
+}
+
+#inner-content {
+    margin: 30px;
+    padding: 30px;
+    background: #f1f1f0;
+
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+    -khtml-border-radius: 4px;
+    border-radius: 4px;
+}
+
+.col-md-4, .col-md-2 {
+    padding: 0;
+}
+
+.input-group {
+    margin-bottom: 15px;
+}
+
+.error {
+    color: red;
+}
+
+.success {
+    color: #00b500;
+}
+
+/** CUSTOMERS PAGE **/
+
+#new-customer {
+    margin-top: 30px;
+}
+
+/** END CUSTOMERS PAGE **/
+
+/** MEDICINES PAGE **/
+
+#new-medicine {
+    margin-top: 30px;
+}
+
+/** END MEDICINES PAGE **/
+
+@media only screen and (min-width : 481px) {
+    .flex-row {
+        display: flex;
+        flex-wrap: wrap;
+    }
+    .flex-row > [class*='col-'] {
+        display: flex;
+        flex-direction: column;
+    }
+    .flex-row.row:after,
+    .flex-row.row:before {
+        display: flex;
+    }
+}
+
+.center-vertically {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+a.popup-link .popuptext {
+    color: blue;
+    text-decoration: none;
+}
+
+a {
+    text-decoration: none !important;
+    color: white !important;
+    font-size: 20px;
+
+    -o-transition: 0.25s;
+    -ms-transition: 0.25s;
+    -moz-transition: 0.25s;
+    -webkit-transition: 0.25s;
+    transition: 0.25s;
+}
+
+a:hover {
+    color: #3f4041 !important;
+
+    -o-transition: 0.25s;
+    -ms-transition: 0.25s;
+    -moz-transition: 0.25s;
+    -webkit-transition: 0.25s;
+    transition: 0.25s;
+}
+
+a::selection, a::-moz-selection, a::-webkit-keygen-select {
+    color: #3f4041;
+    text-decoration: none;
+}
+
+/** TABLES **/
+
+thead {
+    color: white;
+}
+
+.table-striped > thead {
+    background-color: #30302f;
+    box-shadow: inset 0px 0px 16px 0px #101319, inset 0px 0px 0px 1px #0c0e13;
+    box-sizing: border-box;
+    color: white;
+}
+
+td, th {
+    padding: 15px !important;
+}
+
+.table-striped > tbody > tr:nth-child(1n), .table-striped > tbody > tr:nth-child(1n) {
+    background-color: #868E95;
+    color: #e4e4e4;
+}
+
+.table-striped > tbody > tr:nth-child(2n), .table-striped > tbody > tr:nth-child(2n) {
+    background-color: #585c63;
+    color: #e4e4e4;
+}
+
+.table-striped > tbody > tr:hover {
+    background-color: #d0d0d0;
+    color: black;
+    -o-transition: 0.25s;
+    -ms-transition: 0.25s;
+    -moz-transition: 0.25s;
+    -webkit-transition: 0.25s;
+    transition: 0.25s;
+}
+
+table {
+    table-layout: fixed;
+    word-wrap: break-word;
+}
+
+.table td, .table th, .panel {
+    border-color: #272727 !important;
+}
+
+/** END TABLES **/
+

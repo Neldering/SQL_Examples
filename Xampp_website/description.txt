@@ -1,0 +1,26 @@
+Online Pharmacy
+
+System Requirements
+customers can fulfill prescriptions 
+employees can register new customers
+employees can register new doctors
+employees can register new medications
+employees can restock medications
+customers can view current prescriptions
+
+Database requirements and queries to be executed by different users
+
+The online pharmacy allows for doctors to send in prescriptions and for customers to fulfill those prescriptions. 
+
+
+
+The Employee:
+Will need to insert new customers, doctors, medications and restock orders. They will also need to select from those tables. They will also need to be able to delete customers, medications from our offerings, drop doctors from our program and cancel orders.
+
+The Customer:
+Will need to be able to select all their prescriptions, current orders, the stock left for each medication. They will also insert into the customer orders table when fulfilling a prescription. They will also need to be able to delete / cancel an order and change doctors.
+
+The Doctor:
+will be able to see (select) all their patients, all the prescriptions they have written, the types of medications the pharmacy can provide (if they don’t have it in their offerings we can’t write a prescription for it and send it to the pharmacy).
+
+
